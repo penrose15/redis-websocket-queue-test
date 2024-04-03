@@ -14,10 +14,6 @@ import java.util.Set;
 public class RedisUtil {
     private final RedisTemplate<String, Object> redisTemplate;
 
-    public void deleteKey(String key) {
-        redisTemplate.delete(key);
-    }
-
     public void deleteRange(String key, Long start, Long end) {
         ZSetOperations<String, Object> zSetOperations = opsForZSet();
         zSetOperations.removeRange(key, start, end);
@@ -35,26 +31,8 @@ public class RedisUtil {
         }
     }
 
-    public Long getZSetSize(String str) {
-        ZSetOperations<String, Object> z = redisTemplate.opsForZSet();
-        return z.size(str);
-    }
-
     public Set<Object> zRange(String key, Long start, Long end) {
         return opsForZSet().range(key, start, end);
-    }
-
-    public Long getZRank(String key, Object value) {
-        return opsForZSet().rank(key, value);
-    }
-
-    public void setValue(String key, Long value) {
-        redisTemplate.opsForValue().set(key, value);
-    }
-
-
-    public Object getValue(String key) {
-        return redisTemplate.opsForValue().get(key);
     }
 
 }

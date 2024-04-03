@@ -19,6 +19,16 @@ public class QueueScheduler {
 
     private static String key = "KEY";
 
+    /*
+    * ## flow
+    * 2초마다 redis sortedSet에 숫자 추가
+    * sorted set는 System.currentTimeMillis() 순으로 정렬
+    *
+    * sorted set에서 먼저 들어온 순으로 숫자 꺼냄
+    * 이를 /topic/queue를 구독한 클라이언트에게 전송
+    * 이후 꺼낸 숫자 삭제
+    * */
+
     @Scheduled(fixedDelay = 2000)
     public void queue() {
         //input

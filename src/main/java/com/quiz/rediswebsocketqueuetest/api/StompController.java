@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class StompController {
 
+    // test connection
+
     @MessageMapping("/example") // 클라이언트가 /app/example로 메시지 전송
     @SendTo("/topic/messages")  // 서버가 /topic/messages로 메시지 전달
     public String example(String str) {

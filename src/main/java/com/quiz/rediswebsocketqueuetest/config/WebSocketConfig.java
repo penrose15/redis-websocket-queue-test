@@ -13,7 +13,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws/init")
                 .setAllowedOriginPatterns("*")
-                .withSockJS(); //web socket connection이 최초로 이루어지는 곳
+                .withSockJS(); //web socket connection이 최초로 이루어지는 곳(handshake)
     }
 
     @Override
