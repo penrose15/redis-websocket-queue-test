@@ -36,8 +36,11 @@ public class QueueScheduler {
         log.info("input = {}", rand);
         redisUtil.addQueue(key, rand, System.currentTimeMillis());
 
+        Long size = redisUtil.opsForZSet().size(key);
+
+        if(size == null || size < 10L) return;
         //output
-        Set<Object> sets = redisUtil.zRange(key, 0L,1L);
+        Set<Object> sets = redisUtil.zRange(key, 0L,10L);
         for (Object set : sets) {
             int num = (int) set;
             log.info("output = {}", num);
