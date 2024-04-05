@@ -46,6 +46,6 @@ public class QueueScheduler {
             log.info("output = {}", num);
             messagingTemplate.convertAndSend("/topic/queue",num);
         }
-        redisUtil.deleteRange(key, 0L, 1L);
+        redisUtil.deleteRange(key, 0L, 10L);
     }
 }
